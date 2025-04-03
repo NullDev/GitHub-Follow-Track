@@ -1,6 +1,7 @@
 import { schedule } from "node-cron";
 import Log from "./utils/log.js";
 import { FollowerManager } from "./followerManager.js";
+import LogHandler from "./utils/logHandler.js";
 import { meta } from "../config/config.js";
 
 // ========================= //
@@ -29,7 +30,9 @@ Log.debug("OS: " + process.platform + " " + process.arch, true);
 const followerManager = new FollowerManager();
 
 followerManager.checkFollowers();
+LogHandler.removeOldLogs();
 
 schedule("0 * * * *", () => followerManager.checkFollowers());
+schedule("0 0 * * *", async() => await LogHandler.removeOldLogs());
 
 Log.info("Cron job scheduled to run every hour");
