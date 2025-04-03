@@ -6,7 +6,8 @@
   "scripts": {
     "start": "bun src/app.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "generate-config": "node scripts/generate-config.js"
   },
   "author": "NullDev",
   "license": "MIT",
